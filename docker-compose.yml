@@ -1,0 +1,49 @@
+version: '3.3'
+services:
+  db:
+    build: ./.docker/db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    tty: true
+    ports:
+      - "5454:5432"
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    networks:
+      - agrovence-network
+
+  agrovenceapi:
+    build: ./
+    command: yarn start
+    volumes:
+      - ./:/usr/src
+    ports:
+      - "4999:3333"
+    environment:
+      HOST: ${HOST}
+      PORT: ${PORT}
+      NODE_ENV: ${NODE_ENV}
+      APP_NAME: ${APP_NAME}
+      APP_URL: ${APP_URL}
+      CACHE_VIEWS: ${CACHE_VIEWS}
+      APP_KEY: ${APP_KEY}
+      DB_CONNECTION: ${DB_CONNECTION}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_DATABASE: ${DB_DATABASE}
+      HASH_DRIVER: ${HASH_DRIVER}
+
+    depends_on:
+      - db
+    networks:
+      - agrovence-network
+
+networks:
+  agrovence-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+  agrovenceapi-data:
