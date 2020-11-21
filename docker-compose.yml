@@ -40,17 +40,17 @@ services:
     networks:
       - agrovence-network
 
-    web:
-      build:
-        context: ./
-        dockerfile: ./.docker/nginx/Dockerfile
-      volumes:
-        - /etc/letsencrypt/archive/agrovence.com.br:/etc/letsencrypt/live/agrovence.com.br
-      ports:
-        - 80:80
-        - 443:443
-      networks:
-        - agrovence-network
+  web:
+    build:
+      context: ./
+      dockerfile: ./.docker/nginx/Dockerfile
+    volumes:
+      - /etc/letsencrypt/archive/agrovence.com.br:/etc/letsencrypt/live/agrovence.com.br
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - agrovence-network
 
 networks:
   agrovence-network:
