@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "migrate": "node ace migration:run --force",
-    "seed": "node ace seed",
+    "seed": "node ace seed --force",
     "start": "node server.js",
     "production": "yarn migrate && yarn seed && yarn start",
     "dev": "adonis serve --dev --debug",
