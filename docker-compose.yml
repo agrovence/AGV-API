@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   db:
-    build: ./.docker/db
+    image: postgres
     volumes:
       - postgres-data:/var/lib/postgresql/data
     tty: true
@@ -13,8 +13,8 @@ services:
       - agrovence-network
 
   agrovenceapi:
-    build: ./
-    command: yarn start
+    build: .
+    command: yarn production
     volumes:
       - ./:/usr/src
     ports:
