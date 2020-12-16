@@ -5,8 +5,10 @@
   "description": "Adonisjs boilerplate for API server with pre-configured JWT",
   "main": "index.js",
   "scripts": {
-    "migrate": "node ace migration:run --force",
-    "seed": "node ace seed --force",
+    "db:rollback": "node ace migration:rollback --force",
+    "db:migrate": "node ace migration:run --force",
+    "db:seed": "node ace seed --force",
+    "db:refresh": "yarn db:rollback && yarn db:migrate && yarn db:seed",
     "start": "node server.js",
     "production": "yarn migrate && yarn seed && yarn start",
     "dev": "adonis serve --dev --debug",
