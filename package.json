@@ -10,7 +10,6 @@
     "db:seed": "node ace seed --force",
     "db:refresh": "yarn db:rollback && yarn db:migrate && yarn db:seed",
     "start": "node server.js",
-    "production": "yarn migrate && yarn seed && yarn start",
     "dev": "adonis serve --dev --debug",
     "test": "node ace test"
   },

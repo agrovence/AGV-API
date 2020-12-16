@@ -11,4 +11,4 @@ tmp
 database/development.sqlite
 
 # The seeds
-database/seeds
+# database/seeds
