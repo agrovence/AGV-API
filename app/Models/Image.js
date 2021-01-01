@@ -9,7 +9,7 @@ class Image extends Model {
   }
 
   getUrl({ path }) {
-    return `http://${Env.get('HOST')}:${Env.get('PORT')}/uploads/${path}`
+    return `${Env.get('APP_URL')}/uploads/${path}`
   }
 }
 
