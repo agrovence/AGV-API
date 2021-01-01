@@ -44,11 +44,11 @@ class ImageController {
       // captura uma image ou mais do request
       const fileJar = request.file('images', {
         types: ['image'],
-        size: '2mb'
+        size: '2mb',
       })
 
       // retorno pro usuário
-      let images = []
+      const images = []
       // caso seja um unico arquivo - manage_single_upload
       if (!fileJar.files) {
         const file = await manage_single_upload(fileJar)
@@ -57,7 +57,7 @@ class ImageController {
             path: file.fileName,
             size: file.size,
             original_name: file.clientName,
-            extension: file.subtype
+            extension: file.subtype,
           })
 
           // transnformação
@@ -69,11 +69,11 @@ class ImageController {
         }
 
         return response.status(400).send({
-          message: 'Não foi possível processar esta imagem no momento!'
+          message: 'Não foi possível processar esta imagem no momento!',
         })
       }
       // caso sejam vários arquivos - manage_multiple_uploads
-      let files = await manage_multiple_uploads(fileJar)
+      const files = await manage_multiple_uploads(fileJar)
 
       await Promise.all(
         files.successes.map(async file => {
@@ -81,11 +81,11 @@ class ImageController {
             path: file.fileName,
             size: file.size,
             original_name: file.clientName,
-            extension: file.subtype
+            extension: file.subtype,
           })
           const transformedImage = await transform.item(image, Transformer)
           images.push(transformedImage)
-        })
+        }),
       )
 
       return response
@@ -93,7 +93,7 @@ class ImageController {
         .send({ successes: images, errors: files.errors })
     } catch (error) {
       return response.status(400).send({
-        message: 'Não foi possível processar a sua solicitação!'
+        message: 'Não foi possível processar a sua solicitação!',
       })
     }
   }
@@ -130,7 +130,7 @@ class ImageController {
       return response.status(200).send(image)
     } catch (error) {
       return response.status(400).send({
-        message: 'Não foi possível atualizar esta imagem no momento!'
+        message: 'Não foi possível atualizar esta imagem no momento!',
       })
     }
   }
@@ -146,14 +146,14 @@ class ImageController {
   async destroy({ params: { id }, request, response }) {
     const image = await Image.findOrFail(id)
     try {
-      let filepath = Helpers.publicPath(`uploads/${image.path}`)
+      const filepath = Helpers.publicPath(`uploads/${image.path}`)
 
       fs.unlinkSync(filepath)
       await image.delete()
       return response.status(204).send()
     } catch (error) {
       return response.status(400).send({
-        message: 'Não foi possível deletar a imagem no momento!'
+        message: 'Não foi possível deletar a imagem no momento!',
       })
     }
   }

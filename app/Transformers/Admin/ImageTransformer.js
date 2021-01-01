@@ -20,7 +20,7 @@ class ImageTransformer extends TransformerAbstract {
       url: image.url,
       size: image.size,
       original_name: image.original_name,
-      extension: image.extension
+      extension: image.extension,
     }
   }
 }
