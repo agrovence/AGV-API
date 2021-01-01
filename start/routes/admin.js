@@ -13,8 +13,8 @@ Route.group(() => {
     .validator(
       new Map([
         [['categories.store'], ['Admin/StoreCategory']],
-        [['categories.update'], ['Admin/StoreCategory']]
-      ])
+        [['categories.update'], ['Admin/StoreCategory']],
+      ]),
     )
   /**
    * Products resource routes
@@ -34,8 +34,8 @@ Route.group(() => {
     .validator(
       new Map([
         [['users.store'], ['Admin/StoreUser']],
-        [['users.update'], ['Admin/StoreUser']]
-      ])
+        [['users.update'], ['Admin/StoreUser']],
+      ]),
     )
 
   /**
