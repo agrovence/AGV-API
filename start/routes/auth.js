@@ -39,5 +39,5 @@ Route.group(() => {
     .as('auth.reset')
     .middleware(['guest'])
 })
-.prefix(`${Config.get('app.prefix')}/auth`)
+  .prefix(`${Config.get('app.prefix')}/auth`)
   .namespace('Auth')
